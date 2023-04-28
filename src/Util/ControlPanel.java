@@ -20,12 +20,10 @@ public class ControlPanel {
         return temperature;
     }
 
-    //burası oda sıcaklığını değiştiriyor
     public void setTemperature(int temperature) {
         this.temperature = temperature;
     }
 
-    //burası termostat sıcaklığını değiştiriyor
     public void setThermostatTemperature(int temperature) {
         mediator.changeThermostatTemperatureRequest(temperature);
     }

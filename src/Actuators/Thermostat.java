@@ -3,6 +3,8 @@ package Actuators;
 
 import Util.Mediator;
 
+import java.util.Random;
+
 public class Thermostat extends Actuators{
 
     private int temperature;
@@ -13,17 +15,17 @@ public class Thermostat extends Actuators{
 
     @Override
     public void doCommand(String command) {
-        //sıcaklık düşükse command increase, arttır sıcaklığı
+        Random random = new Random();
         if (command.equals("increase")) {
-            while (temperature != 20) {
+            int randomTemp = random.nextInt(20, 25);
+            while (temperature != randomTemp) {
                 temperature++;
             }
             getMediator().getControlPanel().setTemperature(temperature);
         }
-        //sıcaklık yüksekse command decrease, düşür sıcaklığı
-        //oda sicakligini 20-25 derece arasina random b'r sayi ver
         else if (command.equals("decrease")){
-            while (temperature != 25) {
+            int randomTemp = random.nextInt(20, 25);
+            while (temperature != randomTemp) {
                 temperature--;
             }
             getMediator().getControlPanel().setTemperature(temperature);

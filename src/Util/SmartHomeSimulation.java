@@ -52,20 +52,31 @@ public class SmartHomeSimulation {
 
             Random random = new Random();
             int temp = random.nextInt(10, 40);
-            System.out.println("User changed the temperature to: " + temp);
+            System.out.println("Temperature has been changed: " + temp);
             controlPanel.setThermostatTemperature(temp);
-            controlPanel.setDoorLocked(random.nextBoolean());
-            controlPanel.setLightOn(random.nextBoolean());
-
-            System.out.println("Changed Room Temperature via Control Panel: " + controlPanel.getTemperature());
-
             mediator.changeTemperature();
-            mediator.changeLight();
-            mediator.changeDoorLock();
+            boolean isDoorLocked = random.nextBoolean();
+            boolean isLightOn = random.nextBoolean();
+            if (isDoorLocked) {
+                System.out.println("Door has been locked by user.");
+            }
+            else {
+                System.out.println("Door has been unlocked by user.");
+            }
+
+            if (isLightOn) {
+                System.out.println("Light has been turned on by user.");
+            }
+            else {
+                System.out.println("Light has been turned off by user.");
+            }
+            controlPanel.setDoorLocked(isDoorLocked);
+            controlPanel.setLightOn(isLightOn);
 
             System.out.println("Final Room Temperature: " + controlPanel.getTemperature());
-            System.out.println("Door Locked: " + controlPanel.isDoorLocked());
-            System.out.println("Light On: " + controlPanel.isLightOn());
+            System.out.println("Final Door Locked: " + controlPanel.isDoorLocked());
+            System.out.println("Final Light On: " + controlPanel.isLightOn());
+
             counter ++;
             Thread.sleep(1000);
             System.out.println("\n");
